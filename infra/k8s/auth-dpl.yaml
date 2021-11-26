@@ -15,6 +15,13 @@ spec:
       containers:
       - name: auth
         image: sall99/ticketing/auth
+        env:
+          - name: JWT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: jwt-secret
+                key: JWT_SECRET
+
 ---
 apiVersion: v1
 kind: Service
