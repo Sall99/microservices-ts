@@ -1,6 +1,7 @@
 import express from 'express'
 import 'express-async-errors'
 import mongoose from "mongoose"
+import cookieSession from 'cookie-session'
 
 import { currentUser } from './routes/current-user'
 import { NotFoundErrors } from './errors/notFound'
@@ -11,12 +12,19 @@ import { signUp } from './routes/signup'
 
 const app = express()
 app.use(express.json())
+app.set('trust proxy', true)
 
+// COOKIE-SESSION
+app.use(cookieSession({
+   signed: false,
+   secure: true
+}))
 // ROUTES
 app.use(currentUser)
 app.use(signIn)
 app.use(signUp)
 app.use(signOut)
+
 //TROWING ERROR ON NONE EXISTING ROUTE
 app.all("*", async () => {
    throw new NotFoundErrors()
@@ -28,6 +36,11 @@ app.use(errorHandler)
 // MONGODB AND SERVER START FUNCTION
 const Port = 3000
 const start = async () => {
+
+   // THROWING ERROR IF ENVIRRONMENT VARIABLES IS NOT DEFINED
+   if (!process.env.JWT_KEY) {
+      throw new Error('Environement variable must be defined')
+   }
    try {
       await mongoose.connect('mongodb://auth-mongo-srv:27017/auth')
       const conn = mongoose.connection.host
