@@ -1,9 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express'
 import { body } from 'express-validator'
 import jwt from 'jsonwebtoken'
+import { BadRequestError, requestValidation } from '@ticketingsg/common'
 
-import { BadRequestError } from '../errors/badRequest-error'
-import { requestValidation } from '../middlewares/requestValidation'
 import { User } from '../models/user'
 import { Password } from '../services/password'
 
