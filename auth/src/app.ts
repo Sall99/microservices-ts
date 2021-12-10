@@ -1,10 +1,9 @@
 import express from 'express'
 import 'express-async-errors'
 import cookieSession from 'cookie-session'
-
 import { currentUser } from './routes/current-user'
-import { NotFoundErrors } from './errors/notFound'
-import { errorHandler } from './middlewares/error-handler'
+import { NotFoundErrors, errorHandler } from '@ticketingsg/common'
+
 import { signIn } from './routes/signin'
 import { signOut } from './routes/signout'
 import { signUp } from './routes/signup'
