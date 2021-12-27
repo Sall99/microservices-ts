@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 import { app } from "./app"
 
 // MONGODB AND SERVER START FUNCTION
@@ -10,7 +10,7 @@ const start = async () => {
       throw new Error('Environement variable must be defined')
    }
    if (!process.env.MONGO_URI) {
-      throw new Error('MONGO_URI variable must be defined')
+      throw new Error('MONGO_URI must be defined')
    }
    try {
       await mongoose.connect(process.env.MONGO_URI)
