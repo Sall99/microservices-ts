@@ -1,0 +1,5 @@
+{
+	"yaml.schemas": {
+		"kubernetes://schema/v1%40service": "file:///s%3A/Web%20development/Stephen%20Grider/Microservices/Ticketing/infra/k8s/tickets-mongo-dpl.yaml"
+	}
+}
